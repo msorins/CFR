@@ -9,6 +9,12 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = Config.UPLOAD_FOLDER
 app.secret_key = Config.SECRET
 
+"""
+To run
+1. Set FLASK_APP=main.py as env variable
+2. `flask run` in the directory
+"""
+
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
