@@ -6,6 +6,7 @@ class PartialFeedback:
         self.points = points
         self.evaluator = evaluator
         self.info = info
+        # self.icon = icon
 
     def __str__(self) -> str:
         return self.message + " \nPoint -> " + str(self.points)
