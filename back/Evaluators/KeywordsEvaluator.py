@@ -63,8 +63,8 @@ class KeywordsEvaluator(BasicEvaluator):
 
     def get_feedback(self, message, correctness):
         if correctness:
-            return PartialFeedback(message, 1, 'Keywords')
-        return PartialFeedback(message, 0, 'Keywords')
+            return PartialFeedback(message, 1, 'Keywords', 'KeywordEvaluator extra info (TO do)')
+        return PartialFeedback(message, 0, 'Keywords', 'KeywordEvaluator extra info (TO do)')
 
 
 # file = open('C:\W ork\CFR\Data\CV_MirceaSorinSebastian.pdf', 'rb')

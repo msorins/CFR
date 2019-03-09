@@ -35,12 +35,14 @@ class SpellCheckEvaluator(BasicEvaluator):
                     feedback.append(PartialFeedback(
                         f"Misspeling at line{idx}, try: {corrected}",
                         0,
-                        "Spell checker"
+                        "Spell checker",
+                        "Making a typo may look you bad, first impression matters!"
                     ))
                 else:
                     feedback.append(PartialFeedback(
                         f"No misspelling on line {idx}",
                         1,
-                        "Spell checker"
+                        "Spell checker",
+                        "Making a typo may look you bad, first impression matters!"
                     ))
             return feedback

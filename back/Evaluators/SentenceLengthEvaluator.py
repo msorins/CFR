@@ -27,7 +27,7 @@ class SentenceLengthEvaluator(BasicEvaluator):
             else:
                 rights += 1
         return [PartialFeedback('Nr. of short sentences: ' + str(rights) + '\nNr. of long sentences: ' + str(wrongs),
-                               1 if wrongs == 0 else 0, 'Sentences')]
+                               1 if wrongs == 0 else 0, 'Sentences', 'Long sentences are unlikely to be read by recruitors. Statistics say that they only look on a page for about 5 to 10 seconds. That is short')]
 
 
 

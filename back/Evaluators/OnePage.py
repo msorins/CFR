@@ -9,6 +9,6 @@ class OnePage(BasicEvaluator):
         numPages = pyPDF.getNumPages()
 
         if(numPages == 1):
-            return [ PartialFeedback("One page is enough for a CV", 1, 'Number of pages') ]
+            return [ PartialFeedback("One page is enough for a CV", 1, 'Number of pages', "If you do not have at least 15 years of experience, you shouldn't need more than one page") ]
         else:
-            return [ PartialFeedback("One page is enough for a CV", 0, 'Number of pages') ]
+            return [ PartialFeedback("One page is enough for a CV", 0, 'Number of pages', "If you do not have at least 15 years of experience, you shouldn't need more than one page") ]

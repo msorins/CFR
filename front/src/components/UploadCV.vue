@@ -44,7 +44,7 @@
                   </v-list-tile-content>
 
                   <v-list-tile-action>
-                    <v-btn icon ripple>
+                    <v-btn icon ripple @click.native="showDialog(feedback.info)">
                       <v-icon color="grey lighten-1">info</v-icon>
                     </v-btn>
                   </v-list-tile-action>
@@ -78,7 +78,7 @@
                   </v-list-tile-content>
 
                   <v-list-tile-action>
-                    <v-btn icon ripple>
+                    <v-btn icon ripple @click.native="showDialog(feedback.info)">
                       <v-icon color="grey lighten-1">info</v-icon>
                     </v-btn>
                   </v-list-tile-action>
@@ -90,6 +90,13 @@
           </v-card>
         </v-tab-item>
       </v-tabs-items>
+
+      <!-- #### Extra info dialog #### -->
+      <v-dialog v-model="dialog" width="500">
+        <v-card>
+          <v-card-text style="padding:20px; line-height: 22pt;">{{dialogText}}</v-card-text>
+        </v-card>
+      </v-dialog>
     </v-card>
   </v-container>
 </template>
@@ -102,10 +109,16 @@ export default {
     tabs: null,
     ok: "ok",
     nok: "nok",
+    dialog: false,
+    dialogText: "",
     feedbackPositive: [],
     feedbackNegative: []
   }),
   methods: {
+    showDialog(info) {
+      this.$data.dialogText = info
+      this.$data.dialog = true
+    },
     uploadCV() {
       this.file = this.$refs.file.files[0];
 

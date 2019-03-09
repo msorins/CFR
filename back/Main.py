@@ -45,7 +45,7 @@ def submit_resume():
             cv = readUtils.read(path)
 
             # Call all Evaluators
-            evals = [OnePage(), SentenceLengthEvaluator(), KeywordsEvaluator(), SpellCheckEvaluator()]
+            evals = [OnePage(), SentenceLengthEvaluator(), KeywordsEvaluator()] #SpellCheckEvaluator()
             feedbacks = []
             for eval in evals:
                 crtFeedback = eval.evaluate(cv)
