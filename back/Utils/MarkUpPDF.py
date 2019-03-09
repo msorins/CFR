@@ -19,7 +19,8 @@ class MarkUpPDF:
         self.__underline_words(document)
         self.__highlight_words(document)
         self.__cut_words(document)
-        document.save("output.pdf", garbage=4, deflate=True, clean=True)
+        doc_name = self.file_path.split('\\')[-1]
+        document.save('../Uploads/' + "marked_" + doc_name, garbage=4, deflate=True, clean=True)
         # return P
 
     def __underline_words(self, document):
