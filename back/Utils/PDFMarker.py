@@ -1,9 +1,10 @@
-from back.Utils.MarkUpPDF import MarkUpPDF
+import fitz
+from MarkUpPDF import MarkUpPDF
 
-cliche_words = ['Flexible','Motivated','Independent','Self-motivated']
-file_path = 'TO DO'
+cliche_words = ['(Mountain', 'Flexible','Motivated','Independent','Self-motivated']
+file_path = 'back/Data/Cosmin.pdf'
 
-py_pdf = 'TO DO'
+py_pdf = fitz.open(file_path)
 extracted_text = ''
 
 for page_num in range(py_pdf.pageCount):
@@ -17,4 +18,4 @@ for word in cliche_words:
     if word in extracted_text:
         to_cut.append(word)
 
-MarkUpPDF(file_path, c_words=to_cut)
+MarkUpPDF('output.pdf', c_words=to_cut)

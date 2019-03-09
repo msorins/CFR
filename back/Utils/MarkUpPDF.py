@@ -8,9 +8,12 @@ import fitz
 class MarkUpPDF:
     def __init__(self, file_path, u_words=None, h_words=None, c_words=None):
         self.file_path = file_path
-        self.u_words = [' ' + word + ' ' for word in u_words]
-        self.h_words = [' ' + word + ' ' for word in h_words]
-        self.c_words = [' ' + word + ' ' for word in c_words]
+        if u_words is not None:
+            self.u_words = [' ' + word + ' ' for word in u_words]
+        if h_words is not None:
+            self.h_words = [' ' + word + ' ' for word in h_words]
+        if c_words is not None:
+            self.c_words = [' ' + word + ' ' for word in c_words]
 
     # words - list of strings to be underlined
     # pdf_path - string path to the pdf file
@@ -20,7 +23,7 @@ class MarkUpPDF:
         self.__highlight_words(document)
         self.__cut_words(document)
         doc_name = self.file_path.split('\\')[-1]
-        document.save('../Uploads/' + "marked_" + doc_name, garbage=4, deflate=True, clean=True)
+        document.save('output.pdf', garbage=4, deflate=True, clean=True)
         # return P
 
     def __underline_words(self, document):
@@ -48,7 +51,7 @@ class MarkUpPDF:
                     page.addStrikeoutAnnot(instance)
 
 
-MarkUpPDF('..\Data\Cosmin.pdf', u_words=['google', 'qt'], c_words=['the', 'i'], h_words=['algorithms']).mark_pdf()
+MarkUpPDF('/home/andreib/Desktop/CFR/back/Data/Cosmin.pdf', u_words=['google', 'qt'], c_words=['the', 'i'], h_words=['algorithms']).mark_pdf()
 
 ### READ IN PDF
 
