@@ -29,7 +29,7 @@ def _correct(text: str, corrections: List[Correction]) -> str:
     """
     Args:
         text: Text to be corrected
-        indexes: Corrections to be applied
+        corrections: Corrections to be applied
     Returns:
         The corrected text
     """
@@ -41,12 +41,12 @@ def _correct(text: str, corrections: List[Correction]) -> str:
     return text
 
 
-def spellcheck(text: str) -> Tuple[bool, str]:
+def spellcheck(text: str) -> str:
     """
     Args:
-        text: The text to be correction_needed.
+        text: Text to be corrected
     Returns:
-        A tuple with bool flag if correction were needed and corrected text.
+        The corrected text
     """
 
     data = {'text': text}
@@ -65,12 +65,10 @@ def spellcheck(text: str) -> Tuple[bool, str]:
     )
 
     response = response.json()
-    print(response)
+    print(json.dumps(response, indent=4))
     corrections = response["flaggedTokens"]
-    correction_needed = len(corrections) != 0
 
-    if correction_needed:
-        corrections = _get_corrections(corrections)
-        text = _correct(text, corrections)
+    corrections = _get_corrections(corrections)
+    text = _correct(text, corrections)
 
-    return (correction_needed, text)
+    return text
