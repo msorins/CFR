@@ -28,21 +28,28 @@ class SpellCheckEvaluator(BasicEvaluator):
             page = pdf.getPage(idx)
             text = page.extractText()
             text = self._sanitise_text(text)
+
+            corrected_text = spellcheck(text)
+
             feedback = []
-            for idx, line in enumerate(text.split('\n')):
-                had_to_correct, corrected = spellcheck(line)
-                if had_to_correct:
+            old_l = text.split('\n')
+            new_l = corrected_text.split('\n')
+
+            for idx, lines in enumerate(list(zip(old_l, new_l))):
+                old_l, new_l = lines
+                if old_l != new_l:
                     feedback.append(PartialFeedback(
-                        f"Misspeling at line{idx}, try: {corrected}",
+                        f"Misspeling at line {idx}, try: {new_line}",
                         0,
                         "Spell checker",
                         "Making a typo may look you bad, first impression matters!"
                     ))
-                else:
-                    feedback.append(PartialFeedback(
-                        f"No misspelling on line {idx}",
-                        1,
-                        "Spell checker",
-                        "Making a typo may look you bad, first impression matters!"
-                    ))
+
+            if len(feedback) == 0:
+                feedback.append(PartialFeedback(
+                    f"No misspelling!",
+                    1,
+                    "Spell checker"
+                ))
+
             return feedback
