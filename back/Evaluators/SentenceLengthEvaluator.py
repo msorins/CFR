@@ -27,11 +27,11 @@ class SentenceLengthEvaluator(BasicEvaluator):
             else:
                 rights += 1
         return [PartialFeedback('Nr. of short sentences: ' + str(rights) + '\nNr. of long sentences: ' + str(wrongs),
-                               1 if wrongs == 0 else 0)]
+                               1 if wrongs == 0 else 0, 'Sentences')]
 
 
 
 # file = open('C:\Work\CFR\Data\CV_MirceaSorinSebastian.pdf', 'rb')
-file = open('..\Data\\' + 'Cosmin.pdf', 'rb')
-pyPDFReader = PyPDF2.PdfFileReader(file)
-print(SentenceLengthEvaluator().evaluate(pyPDFReader)[0])
+# file = open('..\Data\\' + 'Cosmin.pdf', 'rb')
+# pyPDFReader = PyPDF2.PdfFileReader(file)
+# print(SentenceLengthEvaluator().evaluate(pyPDFReader)[0])

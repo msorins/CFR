@@ -31,7 +31,7 @@ class KeywordsEvaluator(BasicEvaluator):
 
         extracted_text = str.lower(extracted_text)
         extracted_text = extracted_text.replace(' ', '').replace('\n','')
-        print(extracted_text)
+        # print(extracted_text)
 
         # programming languages check
         found = self.count_words(extracted_text, KeywordsEvaluator.programming_languages)
@@ -46,7 +46,7 @@ class KeywordsEvaluator(BasicEvaluator):
         feedback_list.append(self.get_feedback('You may use at least 2 interesting self describing words', found >= 2))
 
         # check for paragraphs
-        print('what?')
+        # print('what?')
         found = self.count_words(extracted_text, KeywordsEvaluator.paragraphs)
         feedback_list.append(self.get_feedback('You need to include all the mandatory paragraphs', found == len(KeywordsEvaluator.paragraphs)))
 
@@ -58,16 +58,16 @@ class KeywordsEvaluator(BasicEvaluator):
             if word in text:
                 print(word, end=';')
                 total += 1
-        print('--')
+        # print('--')
         return total
 
     def get_feedback(self, message, correctness):
         if correctness:
-            return PartialFeedback(message, 1)
-        return PartialFeedback(message, 0)
+            return PartialFeedback(message, 1, 'Keywords')
+        return PartialFeedback(message, 0, 'Keywords')
 
 
-# file = open('C:\Work\CFR\Data\CV_MirceaSorinSebastian.pdf', 'rb')
+# file = open('C:\W ork\CFR\Data\CV_MirceaSorinSebastian.pdf', 'rb')
 # file = open('..\Data\\' + 'Cosmin.pdf', 'rb')
 # pyPDFReader = PyPDF2.PdfFileReader(file)
 # for item in KeywordsEvaluator().evaluate(pyPDFReader):
