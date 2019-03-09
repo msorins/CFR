@@ -4,3 +4,7 @@ class PartialFeedback:
 
         self.message = message
         self.points = points
+
+    def __str__(self) -> str:
+        return self.message + " -> " + self.points
+
