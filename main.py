@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, url_for
+from flask import Flask, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 
 from config import Config
@@ -7,14 +7,14 @@ from util import allowed_file
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = Config.UPLOAD_FOLDER
-
+app.secret_key = Config.SECRET
 
 @app.route('/')
 def hello_world():
     return 'Hello, World!'
 
 
-@app.route('/submit', methods=['POST'])
+@app.route('/submit', methods=['POST', 'GET'])
 def submit_resume():
     if request.method == 'POST':
         # check if the post request has the file part
@@ -29,8 +29,8 @@ def submit_resume():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-                                    
+            path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            file.save(path)
+
+            return path
     # return my_cool_function(f'./{Config.UPLOAD_FOLDER}/{filename}')
