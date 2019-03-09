@@ -3,6 +3,7 @@ import PyPDF2
 from Evaluators.BasicEvaluator import BasicEvaluator
 from API.spellcheck import spellcheck
 from Models.PartialFeedback import PartialFeedback
+from typing import List
 
 class SpellCheckEvaluator(BasicEvaluator):
 
@@ -33,11 +34,13 @@ class SpellCheckEvaluator(BasicEvaluator):
                 if had_to_correct:
                     feedback.append(PartialFeedback(
                         f"Misspeling at line{idx}, try: {corrected}",
-                        0
+                        0,
+                        "Spell checker"
                     ))
                 else:
                     feedback.append(PartialFeedback(
                         f"No misspelling on line {idx}",
-                        1
+                        1,
+                        "Spell checker"
                     ))
             return feedback

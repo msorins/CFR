@@ -65,6 +65,7 @@ def spellcheck(text: str) -> Tuple[bool, str]:
     )
 
     response = response.json()
+    print(response)
     corrections = response["flaggedTokens"]
     correction_needed = len(corrections) != 0
 

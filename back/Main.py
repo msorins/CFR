@@ -3,6 +3,7 @@ import base64
 from Evaluators.KeywordsEvaluator import KeywordsEvaluator
 from Evaluators.OnePage import OnePage
 from Evaluators.SentenceLengthEvaluator import SentenceLengthEvaluator
+from Evaluators.SpellCheckEvaluator import SpellCheckEvaluator
 from Utils.ReadPDF import ReadPDF
 import json
 
@@ -44,7 +45,7 @@ def submit_resume():
             cv = readUtils.read(path)
 
             # Call all Evaluators
-            evals = [OnePage(), SentenceLengthEvaluator(), KeywordsEvaluator()]
+            evals = [OnePage(), SentenceLengthEvaluator(), KeywordsEvaluator(), SpellCheckEvaluator()]
             feedbacks = []
             for eval in evals:
                 crtFeedback = eval.evaluate(cv)
