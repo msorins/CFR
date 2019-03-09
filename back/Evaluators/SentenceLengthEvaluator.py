@@ -32,6 +32,6 @@ class SentenceLengthEvaluator(BasicEvaluator):
 
 
 # file = open('C:\Work\CFR\Data\CV_MirceaSorinSebastian.pdf', 'rb')
-file = open('..\Data\\' + 'Cosmin.pdf', 'rb')
-pyPDFReader = PyPDF2.PdfFileReader(file)
-print(SentenceLengthEvaluator().evaluate(pyPDFReader)[0])
+# file = open('..\Data\\' + 'Cosmin.pdf', 'rb')
+# pyPDFReader = PyPDF2.PdfFileReader(file)
+# print(SentenceLengthEvaluator().evaluate(pyPDFReader)[0])

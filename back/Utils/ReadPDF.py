@@ -5,6 +5,4 @@ class ReadPDF():
         file = open(path, 'rb')
 
         cv = PyPDF2.PdfFileReader(file)
-        page = cv.getPage(0)
-        page.extactText()
         return cv
