@@ -16,7 +16,7 @@ class SentenceLengthEvaluator(BasicEvaluator):
                 for sentence in py_pdf.getPage(page_num).extractText().split('.'):
                     sentences.append(sentence.strip().replace('\n', '').encode('ascii', errors='ignore').decode())
             else:
-                raise RuntimeError('Could not extract text from page ' + page_num)
+                raise RuntimeError('Could not extract text from page ' + str(page_num))
 
         feedback = []
         wrongs = 0
