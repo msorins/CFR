@@ -1,4 +1,4 @@
-from config import Config
+from API.config import Config
 
 def allowed_file(filename):
     return '.' in filename and \
