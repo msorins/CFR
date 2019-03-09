@@ -71,5 +71,6 @@ Evaluators/__pycache__/
 
 \.idea/
 
-# Compiled pycode
 *.pyc
+
+back/cfr2_env
