@@ -1,19 +1,19 @@
 from Evaluators.BasicEvaluator import BasicEvaluator
 from Models.PartialFeedback import PartialFeedback
-import PyPDF2
+from Evaluators.BasicEvaluator import FitzDoc
 # import textract
 
 class SentenceLengthEvaluator(BasicEvaluator):
     SENTENCE_SIZE_LIMIT = 270
 
-    def evaluate(self, py_pdf: PyPDF2):
-        print(py_pdf.numPages)
+    def evaluate(self, py_pdf: FitzDoc):
+        print(py_pdf.pageCount)
 
         sentences = []
-        for page_num in range(py_pdf.numPages):
-            extracted_text = py_pdf.getPage(page_num).extractText()
+        for page_num in range(py_pdf.pageCount):
+            extracted_text = py_pdf[page_num].getText()
             if len(extracted_text) > 0:
-                for sentence in py_pdf.getPage(page_num).extractText().split('.'):
+                for sentence in py_pdf[page_num].getText().split('.'):
                     sentences.append(sentence.strip().replace('\n', '').encode('ascii', errors='ignore').decode())
             else:
                 raise RuntimeError('Could not extract text from page ' + str(page_num))
