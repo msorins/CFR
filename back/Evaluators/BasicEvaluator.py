@@ -1,9 +1,11 @@
-import PyPDF2
+from typing import NewType
+
+FitzDoc = NewType('FitzDoc', str)
 
 class BasicEvaluator:
-    def evaluate(self, pyPDF: PyPDF2):
+    def evaluate(self, pdf: FitzDoc):
         """
-        :param pyPDF:
+        :param pdf:
         :return: a list of PartialFeedback
         """
         pass

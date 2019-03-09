@@ -1,6 +1,6 @@
 from Evaluators.BasicEvaluator import BasicEvaluator
 from Models.PartialFeedback import PartialFeedback
-import PyPDF2
+from Evaluators.BasicEvaluator import FitzDoc
 
 class KeywordsEvaluator(BasicEvaluator):
     programming_languages = ['javaScript','python','java','c','c++','php','swift','c#','ruby','objective-c',
@@ -22,12 +22,12 @@ class KeywordsEvaluator(BasicEvaluator):
     good_personal_words = ['accurate','adaptable','confident','hard-working','innovative','pro-active',
                            'reliable','responsible','achieved']
 
-    def evaluate(self, py_pdf: PyPDF2):
+    def evaluate(self, py_pdf: FitzDoc):
         extracted_text = ''
         feedback_list = []
 
-        for page_num in range(py_pdf.numPages):
-            extracted_text += py_pdf.getPage(page_num).extractText()
+        for page_num in range(py_pdf.pageCount):
+            extracted_text += py_pdf[page_num].getText()
 
         extracted_text = str.lower(extracted_text)
         extracted_text = extracted_text.replace(' ', '').replace('\n','')

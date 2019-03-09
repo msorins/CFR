@@ -4,30 +4,15 @@ from Evaluators.BasicEvaluator import BasicEvaluator
 from API.spellcheck import spellcheck
 from Models.PartialFeedback import PartialFeedback
 from typing import List
+from Evaluators.BasicEvaluator import FitzDoc
+
 
 class SpellCheckEvaluator(BasicEvaluator):
 
-    def _sanitise_text(self, text: str) -> str:
-        text = text.replace('¥', '\n')
-        text = text.replace('Õ', "'")
-        allowed_chars = list(string.ascii_lowercase)
-        allowed_chars += list(string.ascii_uppercase)
-        allowed_chars += list(string.digits)
-        allowed_chars += [' ', '\n', '-', '_', '@', '!', '?', "'", '@', '.', ',', ':']
-        for c in text:
-            if c not in allowed_chars:
-                text = text.replace(c, '')
-        text = text.replace('\n ', '\n')
-        text = text.replace(',\n', ',')
-        text = text.replace('\n,', ',')
-        print(text)
-        return text
-
-    def evaluate(self, pdf: PyPDF2) -> List[PartialFeedback]:
-        for idx in range(pdf.numPages):
-            page = pdf.getPage(idx)
-            text = page.extractText()
-            text = self._sanitise_text(text)
+    def evaluate(self, pdf: FitzDoc) -> List[PartialFeedback]:
+        for idx in range(pdf.pageCount):
+            page = pdf[idx]
+            text = page.getText()
 
             corrected_text = spellcheck(text)
 
