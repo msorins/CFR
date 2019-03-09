@@ -1,3 +1,5 @@
+import base64
+
 from Evaluators.OnePage import OnePage
 from Utils.ReadPDF import ReadPDF
 
@@ -7,8 +9,13 @@ from werkzeug.utils import secure_filename
 
 from API.config import Config
 from API.util import allowed_file
+from flask_cors import CORS
+
+import json
+
 
 app = Flask(__name__)
+CORS(app)
 app.config['UPLOAD_FOLDER'] = Config.UPLOAD_FOLDER
 app.secret_key = Config.SECRET
 
@@ -20,22 +27,29 @@ def hello_world():
 @app.route('/submit', methods=['POST', 'GET'])
 def submit_resume():
     if request.method == 'POST':
+
+        image = request.files['file']
+        print("img string")
+        print(image)
+
+
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file part')
-            return redirect(request.url)
+            return "no file"
         file = request.files['file']
         # if user does not select file, browser also
         # submit a empty part without filename
         if file.filename == '':
             flash('No selected file')
-            return redirect(request.url)
+            return "no selected file"
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(path)
 
             return path
+        return "bou"
     # return my_cool_function(f'./{Config.UPLOAD_FOLDER}/{filename}')
 
 
