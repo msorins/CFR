@@ -70,3 +70,6 @@ cvr_env/
 Evaluators/__pycache__/
 
 \.idea/
+
+# Compiled pycode
+*.pyc
