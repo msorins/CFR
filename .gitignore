@@ -70,3 +70,5 @@ cvr_env/
 Evaluators/__pycache__/
 
 \.idea/
+
+*.pyc
