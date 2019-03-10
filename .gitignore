@@ -74,3 +74,4 @@ Evaluators/__pycache__/
 *.pyc
 
 back/cfr2_env
+*.pdf
